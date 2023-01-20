@@ -1,4 +1,5 @@
 import './styles.css'
+import { addHideClass } from './utils/utils'
 import { ContextMenu } from './menu'
 
 class App{
@@ -16,4 +17,5 @@ class App{
 
 const app = new App()
 app.run()
+
 
