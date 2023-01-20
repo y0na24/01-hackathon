@@ -14,10 +14,12 @@ export class ContextMenu extends Menu {
     document.body.addEventListener('contextmenu', (event) => {
       event.preventDefault()
 
-      this.el.style.top = `${event.clientY}px`
-      this.el.style.left = `${event.clientX}px`
-      this.el.classList.add('open')
-      
+      if (!this.#itemArr) {
+        this.el.style.top = `${event.clientY}px`
+        this.el.style.left = `${event.clientX}px`
+        this.el.classList.add('open')
+      }
+
       addHideClass('.notice-block')
     })
   }
