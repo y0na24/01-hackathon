@@ -1,5 +1,4 @@
 import './styles.css'
-import { addHideClass } from './utils/utils'
 import { ContextMenu } from './menu'
 
 class App{
