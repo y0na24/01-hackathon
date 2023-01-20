@@ -1,6 +1,21 @@
 import './styles.css'
 import { addHideClass } from './utils/utils'
+import { ContextMenu } from './menu'
 
-addEventListener("contextmenu", function() {
-  addHideClass('.notice-block')
-})
+class App{
+  #contextMenu
+  
+  constructor() {
+    this.#contextMenu = new ContextMenu('.menu', [])
+  }
+
+  run() {
+    this.#contextMenu.open()
+    this.#contextMenu.add()
+  }
+}
+
+const app = new App()
+app.run()
+
+
