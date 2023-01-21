@@ -25,20 +25,10 @@ export class ContextMenu extends Menu {
       makeElementHidden('.notice-block')
     })
     // FOR TEST
-    document.body.addEventListener('click', (event) => {
-      const timer = document.createElement('div')
-      timer.classList.add("timer")
-      const timerUI = document.body.querySelector('div.timer')
-      if (!timerUI) {
-        document.body.append(timer)
-        let cm = new ClicksModule("ClicksModule", "click", document.querySelector(".timer"), document.body, 5)
-        cm.trigger()
-      } else {
-        timerUI.remove()
-        document.body.append(timer)
-        let cm = new ClicksModule("ClicksModule", "click", document.querySelector(".timer"), document.body, 5)
-        cm.trigger()
-      }
+    let cm = new ClicksModule("ClicksModule", "click", document.body, document.body, 5)
+
+    document.body.addEventListener('keyup', (event) => {
+      cm.trigger()
     })
   }
 

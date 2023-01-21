@@ -3,35 +3,43 @@ import * as Utils from "../utils/utils"
 
 export class ClicksModule extends Module {
   #increaseWrapper = this.#increaseClicksScore.bind(this)
+  #currentTime
 
-  constructor(type, text, root, clicksSquare, quantitySeconds) {
+  constructor(type, text, targetElement, clicksSquare, quantitySeconds) {
     super(type, text)
-    
-    root.innerHTML = this.#getHTML()
+    this.#appendCalculatorDiv(targetElement)
+
+    this.timerBlock = targetElement.querySelector("div.timer")
+    this.timerBlock.innerHTML = this.#getHTML()
     
     this.eventBlock = {
-      score: root.querySelector(".score-block .primary"),
-      timer: root.querySelector(".timer-block .primary"),
-      scoreBlock: root.querySelector(".score-block"),
-      timerBlock: root.querySelector(".timer-block")
+      score: targetElement.querySelector(".score-block .primary"),
+      timer: targetElement.querySelector(".timer-block .primary"),
+      scoreBlock: targetElement.querySelector(".score-block"),
+      currentTimeBlock: targetElement.querySelector(".timer-block")
     }
 
-    this.root = root
     this.quantitySeconds = quantitySeconds
-    this.quantityClicks = 0 
     this.clicksSquare = clicksSquare
+    this.targetElement = targetElement
+
+    this.quantityClicks = 0 
     this.interval = null
+    this.isActivated = false
 
     this.#updateTimer(quantitySeconds)
   }
 
   #updateTimer(time) {
+    console.log(Utils.getFormatedTime(time));
     this.eventBlock.timer.innerHTML = Utils.getFormatedTime(time)
   }
 
   trigger() {
-    if (this.root) {
+    if (this.timerBlock && !this.isActivated) {
+      Utils.makeElementVisable(this.timerBlock)
       this.#start()
+      console.log("START");
     } else {
       this.#stop()
     }
@@ -42,14 +50,21 @@ export class ClicksModule extends Module {
       return
     }
 
+    if (this.eventBlock.currentTimeBlock.classList.contains('hide')) {
+      Utils.makeElementVisable(this.eventBlock.currentTimeBlock)
+      Utils.makeElementHidden(this.eventBlock.scoreBlock)
+    }
+
+    this.isActivated = true
+    this.#currentTime = this.quantitySeconds
+    
     this.clicksSquare.addEventListener("click", this.#increaseWrapper)
 
     this.interval = setInterval(() => {
-      this.quantitySeconds--
-      this.#updateTimer(this.quantitySeconds)
-      
-      if (this.quantitySeconds === 0) {
-        this.#stop(this.quantitySeconds)
+      this.#currentTime--
+      this.#updateTimer(this.#currentTime)
+      if (this.#currentTime === 0) {
+        this.#stop(this.#currentTime)
       }
     }, 1000)
   }
@@ -62,24 +77,38 @@ export class ClicksModule extends Module {
     clearInterval(this.interval)
     this.clicksSquare.removeEventListener("click", this.#increaseWrapper)
     this.#updateInteface(time)
-    this.quantityClicks = 0
     
-    let visibilityTime = 5
-    this.interval = setInterval(() => {
-      visibilityTime--
-      if (visibilityTime == 0) {
-        clearInterval(this.interval)
-        this.root.remove()
-      }
-    }, 1000)
+    this.quantityClicks = 0
+    this.isActivated = false
+
+    if (!this.eventBlock?.scoreBlock.classList.contains('hide')) {
+      let visibilityTime = 5
+      this.interval = setInterval(() => {
+        visibilityTime--
+        if (visibilityTime == 0) {
+          Utils.makeElementHidden(this.eventBlock.scoreBlock)
+        }
+      }, 1000)
+    } else {
+      Utils.makeElementHidden(this.eventBlock.scoreBlock)
+      this.#start()
+    }
   }
 
   #updateInteface(time) {
     if (time === 0) {
       Utils.makeElementVisable(this.eventBlock.scoreBlock)
       this.eventBlock.score.innerHTML = this.quantityClicks
-      this.eventBlock.timerBlock.remove()
+      Utils.makeElementHidden(this.eventBlock.currentTimeBlock)
     }
+  }
+
+  #appendCalculatorDiv(targetElement) {
+    const timer = document.createElement('div')
+    timer.classList.add("timer")
+    targetElement.append(timer)
+    this.timerBlock = targetElement.querySelector("div.timer")
+    this.timerBlock.innerHTML = this.#getHTML()
   }
 
   #getHTML() {
