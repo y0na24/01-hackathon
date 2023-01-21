@@ -2,12 +2,16 @@ import {Module} from '../core/module'
 import {random} from '../utils'
 
 export class BackgroundModule extends Module {
-    constructor() {
-        super('background', 'Поменять цвет фона') 
+    constructor(type,text) {
+        super(type, text) 
     }
 
     trigger() {
-        this.#setBackground();
+        const backgroundModule = document.querySelector(`[data-type='${this.type}']`)
+
+        backgroundModule.addEventListener('click', () => {
+            this.#setBackground();
+        })    
     }
 
     #setBackground() {
