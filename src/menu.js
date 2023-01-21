@@ -1,6 +1,8 @@
 import { Menu } from './core/menu'
 import { Module } from './core/module'
-import { addHideClass } from './utils/utils'
+import { makeElementHidden } from './utils/utils'
+import { makeElementVisable } from './utils/utils'
+import { ClicksModule } from './modules/clicks.module'
 
 export class ContextMenu extends Menu {
   #itemArr
@@ -20,7 +22,13 @@ export class ContextMenu extends Menu {
         this.el.classList.add('open')
       }
 
-      addHideClass('.notice-block')
+      makeElementHidden('.notice-block')
+    })
+    // FOR TEST
+    let cm = new ClicksModule("ClicksModule", "click", document.body, document.body, 5)
+
+    document.body.addEventListener('keyup', (event) => {
+      cm.trigger()
     })
   }
 
