@@ -1,6 +1,8 @@
 import { Menu } from './core/menu'
 import { Module } from './core/module'
-import { addHideClass } from './utils/utils'
+import { makeElementHidden } from './utils/utils'
+import { makeElementVisable } from './utils/utils'
+import { ClicksModule } from './modules/clicks.module'
 
 export class ContextMenu extends Menu {
   #itemArr
@@ -20,7 +22,23 @@ export class ContextMenu extends Menu {
         this.el.classList.add('open')
       }
 
-      addHideClass('.notice-block')
+      makeElementHidden('.notice-block')
+    })
+    // FOR TEST
+    document.body.addEventListener('click', (event) => {
+      const timer = document.createElement('div')
+      timer.classList.add("timer")
+      const timerUI = document.body.querySelector('div.timer')
+      if (!timerUI) {
+        document.body.append(timer)
+        let cm = new ClicksModule("ClicksModule", "click", document.querySelector(".timer"), document.body, 5)
+        cm.trigger()
+      } else {
+        timerUI.remove()
+        document.body.append(timer)
+        let cm = new ClicksModule("ClicksModule", "click", document.querySelector(".timer"), document.body, 5)
+        cm.trigger()
+      }
     })
   }
 
