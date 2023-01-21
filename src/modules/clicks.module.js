@@ -36,13 +36,19 @@ export class ClicksModule extends Module {
   }
 
   trigger() {
-    if (this.timerBlock && !this.isActivated) {
-      Utils.makeElementVisable(this.timerBlock)
-      this.#start()
-      console.log("START");
-    } else {
-      this.#stop()
-    }
+    const clickModule = document?.querySelector(`[data-type="${this.type}"]`)
+    
+    clickModule.addEventListener('click', () => {
+      if (this.timerBlock && !this.isActivated) {
+        Utils.makeElementVisable(this.timerBlock)
+        this.#start()
+        console.log("START");
+      } else {
+        this.#stop()
+      }
+    })
+
+    
   }
 
   #start() {
