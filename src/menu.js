@@ -7,7 +7,7 @@ export class ContextMenu extends Menu {
 
   constructor(selector, itemArr) {
     super(selector)
-    this.#itemArr = [...itemArr]
+    this.#itemArr = itemArr
   }
 
   open() {
