@@ -16,17 +16,17 @@ export class MessageModule extends Module {
     const createButton = document.querySelector(`[data-type='${this.type}']`)
 
     createButton.addEventListener('click', () => {
-      console.log(this.#span)
+
       if (this.#span) {
         this.#createMessage(this.#span)
 
         const removeMessage = setInterval(() => {
-          document.querySelector(`#random_message`).remove()
+          document?.querySelector(`#random_message`)?.remove()
           this.#createMessage(this.#span)
         }, 2000)
 
         setTimeout(() => {
-          document.querySelector(`#random_message`).remove()
+          document?.querySelector(`#random_message`)?.remove()
           clearInterval(removeMessage)
         }, 10000)
       }
