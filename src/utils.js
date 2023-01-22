@@ -45,13 +45,14 @@ export const getFormattedTime = (quantitySeconds) => {
 
   return `${quantitySeconds}`
 
-})
+}
 
 export const getRandomColor = (() => {
   return `rgb(${random(1, 255)}, ${random(1, 255)}, ${random(1, 255)})`;
 })
 
-}
+
+
 
 export function getMessages() {
   const messageArr = [
@@ -67,5 +68,17 @@ export function getMessages() {
   ]
 
   return messageArr
+}
+
+export function getSounds() {
+  const soundsArr = [ 
+    '../src/assets/s1.wav',
+    '../src/assets/s2.wav',
+    '../src/assets/s3.wav',
+    '../src/assets/s4.wav',
+    '../src/assets/s5.wav',
+  ]
+
+  return soundsArr
 }
 

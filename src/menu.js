@@ -24,10 +24,6 @@ export class ContextMenu extends Menu {
       makeElementHidden('.notice-block')
     })
 
-    const shape = new ShapeModule("ShapeModule", 'Create Figure', document.body)
-    document.addEventListener('click', () => {
-      shape.trigger()
-    })
   }
 
   close() {

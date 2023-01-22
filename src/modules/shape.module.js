@@ -11,7 +11,13 @@ export class ShapeModule extends Module {
   }
 
   trigger() {
-    this.#createGeometryFigure(Util.random(0, 3) , this.placeForTheElementUI)
+    const shapeModule = document.querySelector(`[data-type='${this.type}']`)
+
+    shapeModule.addEventListener('click', () => {
+      this.#createGeometryFigure(Util.random(0, 3) , this.placeForTheElementUI)
+    })
+
+    
   }
 
   #createGeometryFigure(geometryType, placeForFigure) {
