@@ -15,9 +15,10 @@ export class ShapeModule extends Module {
 
     shapeModule.addEventListener('click', () => {
       this.#createGeometryFigure(Util.random(0, 3) , this.placeForTheElementUI)
+      setTimeout(() => {
+        this.placeForTheElementUI.querySelector('.geometry').remove()
+      }, Constants.TIMEOUT_FOR_DELETE * 1000)
     })
-
-    
   }
 
   #createGeometryFigure(geometryType, placeForFigure) {
