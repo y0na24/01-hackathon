@@ -81,7 +81,19 @@ span {
   pointer-events: none;
 }
 
+
 .geometry {
   position: absolute;
   box-shadow: 0px 0px 15px #ff7aa2;
 }
+
+.random_massage {
+	position: fixed;
+	bottom: 50px;
+	right: 30px;
+	background: #2980BA;
+	padding: 40px;
+	border-radius: 10px;
+  color: #fff;
+}
+
