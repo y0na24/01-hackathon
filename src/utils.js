@@ -44,6 +44,13 @@ export const getFormattedTime = (quantitySeconds) => {
   }
 
   return `${quantitySeconds}`
+
+})
+
+export const getRandomColor = (() => {
+  return `rgb(${random(1, 255)}, ${random(1, 255)}, ${random(1, 255)})`;
+})
+
 }
 
 export function getMessages() {
@@ -61,3 +68,4 @@ export function getMessages() {
 
   return messageArr
 }
+

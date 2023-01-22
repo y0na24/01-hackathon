@@ -1,5 +1,6 @@
 import { Menu } from './core/menu'
 import { Module } from './core/module'
+import { ShapeModule } from './modules/shape.module'
 import { makeElementHidden } from './utils'
 
 export class ContextMenu extends Menu {
@@ -21,6 +22,11 @@ export class ContextMenu extends Menu {
       }
 
       makeElementHidden('.notice-block')
+    })
+
+    const shape = new ShapeModule("ShapeModule", 'Create Figure', document.body)
+    document.addEventListener('click', () => {
+      shape.trigger()
     })
   }
 

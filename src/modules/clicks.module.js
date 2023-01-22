@@ -31,7 +31,6 @@ export class ClicksModule extends Module {
   }
 
   #updateTimer(time) {
-    console.log(Utils.getFormattedTime(time));
     this.eventBlock.timer.innerHTML = Utils.getFormattedTime(time)
   }
 
@@ -42,7 +41,6 @@ export class ClicksModule extends Module {
       if (this.timerBlock && !this.isActivated) {
         Utils.makeElementVisible(this.timerBlock)
         this.#start()
-        console.log("START");
       } else {
         this.#stop()
       }
