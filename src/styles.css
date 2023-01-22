@@ -80,3 +80,13 @@ span {
   opacity: 0;
   pointer-events: none;
 }
+
+.random_massage {
+	position: fixed;
+	bottom: 50px;
+	right: 30px;
+	background: #2980BA;
+	padding: 40px;
+	border-radius: 10px;
+  color: #fff;
+}
