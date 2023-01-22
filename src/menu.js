@@ -1,6 +1,6 @@
 import { Menu } from './core/menu'
 import { Module } from './core/module'
-import { makeElementHidden } from './utils/utils'
+import { makeElementHidden } from './utils'
 
 export class ContextMenu extends Menu {
   #itemArr

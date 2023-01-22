@@ -1,5 +1,5 @@
 import {Module} from '../core/module'
-import * as Utils from "../utils/utils"
+import * as Utils from "../utils"
 
 export class ClicksModule extends Module {
   #increaseWrapper = this.#increaseClicksScore.bind(this)
@@ -31,8 +31,8 @@ export class ClicksModule extends Module {
   }
 
   #updateTimer(time) {
-    console.log(Utils.getFormatedTime(time));
-    this.eventBlock.timer.innerHTML = Utils.getFormatedTime(time)
+    console.log(Utils.getFormattedTime(time));
+    this.eventBlock.timer.innerHTML = Utils.getFormattedTime(time)
   }
 
   trigger() {
@@ -40,7 +40,7 @@ export class ClicksModule extends Module {
     
     clickModule.addEventListener('click', () => {
       if (this.timerBlock && !this.isActivated) {
-        Utils.makeElementVisable(this.timerBlock)
+        Utils.makeElementVisible(this.timerBlock)
         this.#start()
         console.log("START");
       } else {
@@ -57,7 +57,7 @@ export class ClicksModule extends Module {
     }
 
     if (this.eventBlock.currentTimeBlock.classList.contains('hide')) {
-      Utils.makeElementVisable(this.eventBlock.currentTimeBlock)
+      Utils.makeElementVisible(this.eventBlock.currentTimeBlock)
       Utils.makeElementHidden(this.eventBlock.scoreBlock)
     }
 
@@ -82,7 +82,7 @@ export class ClicksModule extends Module {
   #stop(time) {
     clearInterval(this.interval)
     this.clicksSquare.removeEventListener("click", this.#increaseWrapper)
-    this.#updateInteface(time)
+    this.#updateInterface(time)
     
     this.quantityClicks = 0
     this.isActivated = false
@@ -101,9 +101,9 @@ export class ClicksModule extends Module {
     }
   }
 
-  #updateInteface(time) {
+  #updateInterface(time) {
     if (time === 0) {
-      Utils.makeElementVisable(this.eventBlock.scoreBlock)
+      Utils.makeElementVisible(this.eventBlock.scoreBlock)
       this.eventBlock.score.innerHTML = this.quantityClicks
       Utils.makeElementHidden(this.eventBlock.currentTimeBlock)
     }
@@ -121,7 +121,7 @@ export class ClicksModule extends Module {
     return `
     <div class="click-event-block">
       <div class="timer-block">
-        <span>Time for click: <span class="primary">${Utils.getFormatedTime(this.quantitySeconds)}</span></span>
+        <span>Time for click: <span class="primary">${Utils.getFormattedTime(this.quantitySeconds)}</span></span>
       </div>
       <div class="score-block hide">
         <span class="current-score">Quantities clicks: <span class="primary">${this.quantityClicks=0}</span></span>
