@@ -1,6 +1,5 @@
 import { Menu } from './core/menu'
 import { Module } from './core/module'
-import { ShapeModule } from './modules/shape.module'
 import { makeElementHidden } from './utils'
 
 export class ContextMenu extends Menu {

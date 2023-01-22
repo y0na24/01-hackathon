@@ -88,11 +88,25 @@ span {
 }
 
 .random_massage {
-	position: fixed;
-	bottom: 50px;
-	right: 30px;
-	background: #2980BA;
-	padding: 40px;
-	border-radius: 10px;
+  position: fixed;
+  bottom: 50px;
+  right: 30px;
+  background: #2980BA;
+  padding: 40px;
+  border-radius: 10px;
+  animation-duration: 0.3s;
+  animation-name: slide;
   color: #fff;
+}
+
+@keyframes slide {
+  from {
+      margin-right: 100%;
+      width: auto;
+  }
+
+  to {
+      margin-right: 0%;
+      width: auto;
+  }
 }

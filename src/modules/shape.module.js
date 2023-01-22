@@ -17,7 +17,7 @@ export class ShapeModule extends Module {
       this.#createGeometryFigure(Util.random(0, 3) , this.placeForTheElementUI)
       setTimeout(() => {
         this.placeForTheElementUI.querySelector('.geometry').remove()
-      }, Constants.TIMEOUT_FOR_DELETE * 1000)
+      }, Constants.TIMEOUT_FOR_DELETE * 250)
     })
   }
 
@@ -31,7 +31,7 @@ export class ShapeModule extends Module {
         placeForFigure.append(this.#generateSquare(
           width,
           Util.random(1, placeForFigureInfo.width - width),
-          Util.random(1, placeForFigureInfo.height - width - Constants.FIXED_HIEGHT),
+          Util.random(1, placeForFigureInfo.height - width - Constants.FIXED_HEIGHT),
           Util.getRandomColor()
         ))
         break;
@@ -41,7 +41,7 @@ export class ShapeModule extends Module {
             width,
             height,
             Util.random(1, placeForFigureInfo.width - width),
-            Util.random(1, placeForFigureInfo.height - height - Constants.FIXED_HIEGHT),
+            Util.random(1, placeForFigureInfo.height - height - Constants.FIXED_HEIGHT),
             Util.getRandomColor()
           )
         )
@@ -51,7 +51,7 @@ export class ShapeModule extends Module {
           this.#generateCircle(
             width,
             Util.random(1, placeForFigureInfo.width - width),
-            Util.random(1, placeForFigureInfo.height - width - Constants.FIXED_HIEGHT),
+            Util.random(1, placeForFigureInfo.height - width - Constants.FIXED_HEIGHT),
             Util.getRandomColor()
           )
         )
@@ -62,7 +62,7 @@ export class ShapeModule extends Module {
           width,
           height,
           Util.random(1, placeForFigureInfo.width - width),
-          Util.random(1, placeForFigureInfo.height - height - Constants.FIXED_HIEGHT),
+          Util.random(1, placeForFigureInfo.height - height - Constants.FIXED_HEIGHT),
           Util.getRandomColor()
           )
         )

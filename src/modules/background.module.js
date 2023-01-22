@@ -20,7 +20,6 @@ export class BackgroundModule extends Module {
             document.body.style.background = `linear-gradient(${directions[random(0, 7)]}, ${this.#getRandomColor()}, ${this.#getRandomColor()})`;
             document.body.style.backgroundRepeat = 'no-repeat';
             document.body.style.backgroundSize = 'cover';
-            document.body.style.height = '100vh';
 
         } else {
             document.body.style.background = this.#getRandomColor();
