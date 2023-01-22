@@ -12,6 +12,7 @@ export class SoundModule extends Module {
 
   trigger() {
     this.#formatSoundArray()
+    
     const length = this.#soundsArr.length - 1
     const soundModule = document.querySelector(`[data-type='${this.type}']`)
 

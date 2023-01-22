@@ -2,7 +2,7 @@ import {Module} from '../core/module'
 
 export class ShapeModule extends Module {
 
-  constructor(text, type, parentElementOnTheDOM) {
+  constructor(type, text, parentElementOnTheDOM) {
     super(type, text)
     
     this.parentElementOnTheDOM = parentElementOnTheDOM

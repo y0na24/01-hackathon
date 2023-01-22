@@ -82,7 +82,7 @@ export class ClicksModule extends Module {
     clearInterval(this.interval)
 
     this.clickPlaceOnTheDOM.removeEventListener("click", this.#increaseWrapper)
-    this.#updateInteface(time)
+    this.#updateInterface(time)
     
     this.quantityClicks = 0
     this.isActivated = false
@@ -121,7 +121,7 @@ export class ClicksModule extends Module {
     return `
     <div class="click-event-block">
       <div class="timer-block hide">
-        <span>Time for click: <span class="primary">${Utils.getFormatedTime(this.quantitySeconds)}</span></span>
+        <span>Time for click: <span class="primary">${Utils.getFormattedTime(this.quantitySeconds)}</span></span>
 
       </div>
       <div class="score-block hide">
