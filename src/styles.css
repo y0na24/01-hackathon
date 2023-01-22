@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Share+Tech+Mono');
 
 * {
     margin: 0;
@@ -7,18 +8,28 @@
 }
 
 body {
-    font-size: 14px;
-    font-family: 'Roboto', sans-serif;
-    height: 100vh;
-    width: 100%;
-    padding: 2rem;
+  background-color: #191919;
+  color: #fff;
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+  height: 100vh;
+  width: 100%;
+  padding: 2rem;
+}
+
+span {
+  font-size: 24px;
+  position: relative;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .menu {
     position: fixed;
     z-index: 1000;
     width: 150px;
-    background: #1b1a1a;
+    background: #fff;
     border-radius: 5px;
     display: none;
     list-style: none;
@@ -31,12 +42,71 @@ body {
 .menu .menu-item {
     padding: 8px 10px;
     font-size: 1rem;
-    color: #eee;
+    color: black;
     cursor: pointer;
-    transition: background-color .2s ease-in;
+    transition: all .2s ease-in;
     border-radius: inherit;
 }
 
 .menu .menu-item:hover {
-    background: #343434;
+    opacity: 0.665;
+}
+
+.notice-block {
+  min-width: 30%;
+  max-height: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 1s ease-in-out;
+}
+
+.notice-block h3 {
+  font-size: 24px;
+  position: relative;
+  font-weight: bold;
+  text-align: center;
+}
+
+.timer {
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%);
+  transition: 0.7s ease-in-out;
+}
+
+.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+.geometry {
+  position: absolute;
+  box-shadow: 0px 0px 15px #ff7aa2;
+}
+
+.random_massage {
+  position: fixed;
+  bottom: 50px;
+  right: 30px;
+  background: #2980BA;
+  padding: 40px;
+  border-radius: 10px;
+  animation-duration: 0.3s;
+  animation-name: slide;
+  color: #fff;
+}
+
+@keyframes slide {
+  from {
+      margin-right: 100%;
+      width: auto;
+  }
+
+  to {
+      margin-right: 0%;
+      width: auto;
+  }
 }
