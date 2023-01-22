@@ -97,6 +97,7 @@ span {
   animation-duration: 0.3s;
   animation-name: slide;
   color: #fff;
+  margin-left: 20px;
 }
 
 @keyframes slide {
