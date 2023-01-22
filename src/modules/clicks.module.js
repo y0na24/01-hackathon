@@ -5,23 +5,23 @@ export class ClicksModule extends Module {
   #increaseWrapper = this.#increaseClicksScore.bind(this)
   #currentTime
 
-  constructor(type, text, targetElement, clicksSquare, quantitySeconds) {
+  constructor(type, text, parentElementOnTheDOM, clickPlaceOnTheDOM, quantitySeconds) {
     super(type, text)
-    this.#appendCalculatorDiv(targetElement)
+    this.#appendCalculatorDiv(parentElementOnTheDOM)
 
-    this.timerBlock = targetElement.querySelector("div.timer")
+    this.timerBlock = parentElementOnTheDOM.querySelector("div.timer")
     this.timerBlock.innerHTML = this.#getHTML()
     
     this.eventBlock = {
-      score: targetElement.querySelector(".score-block .primary"),
-      timer: targetElement.querySelector(".timer-block .primary"),
-      scoreBlock: targetElement.querySelector(".score-block"),
-      currentTimeBlock: targetElement.querySelector(".timer-block")
+      score: parentElementOnTheDOM.querySelector(".score-block .primary"),
+      timer: parentElementOnTheDOM.querySelector(".timer-block .primary"),
+      scoreBlock: parentElementOnTheDOM.querySelector(".score-block"),
+      currentTimeBlock: parentElementOnTheDOM.querySelector(".timer-block")
     }
 
     this.quantitySeconds = quantitySeconds
-    this.clicksSquare = clicksSquare
-    this.targetElement = targetElement
+    this.clickPlaceOnTheDOM = clickPlaceOnTheDOM
+    this.parentElementOnTheDOM = parentElementOnTheDOM
 
     this.quantityClicks = 0 
     this.interval = null
@@ -47,8 +47,6 @@ export class ClicksModule extends Module {
         this.#stop()
       }
     })
-
-    
   }
 
   #start() {
@@ -64,8 +62,9 @@ export class ClicksModule extends Module {
     this.isActivated = true
     this.#currentTime = this.quantitySeconds
     
-    this.clicksSquare.addEventListener("click", this.#increaseWrapper)
+    this.clickPlaceOnTheDOM.addEventListener("click", this.#increaseWrapper)
 
+    this.#updateTimer(this.quantitySeconds)
     this.interval = setInterval(() => {
       this.#currentTime--
       this.#updateTimer(this.#currentTime)
@@ -81,8 +80,9 @@ export class ClicksModule extends Module {
 
   #stop(time) {
     clearInterval(this.interval)
-    this.clicksSquare.removeEventListener("click", this.#increaseWrapper)
-    this.#updateInterface(time)
+
+    this.clickPlaceOnTheDOM.removeEventListener("click", this.#increaseWrapper)
+    this.#updateInteface(time)
     
     this.quantityClicks = 0
     this.isActivated = false
@@ -120,8 +120,9 @@ export class ClicksModule extends Module {
   #getHTML() {
     return `
     <div class="click-event-block">
-      <div class="timer-block">
-        <span>Time for click: <span class="primary">${Utils.getFormattedTime(this.quantitySeconds)}</span></span>
+      <div class="timer-block hide">
+        <span>Time for click: <span class="primary">${Utils.getFormatedTime(this.quantitySeconds)}</span></span>
+
       </div>
       <div class="score-block hide">
         <span class="current-score">Quantities clicks: <span class="primary">${this.quantityClicks=0}</span></span>
